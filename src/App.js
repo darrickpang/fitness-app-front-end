@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Welcome from './containers/Welcome';
-import UserLoginSignUp from './components/UserLoginSignUp';
+import UserLoginSignUp from './components/UserLoginSIgnUp';
 import UserMainContent from './containers/UserMainContent';
 import { Switch, Route, withRouter} from 'react-router-dom';
 
@@ -11,12 +11,6 @@ class App extends React.Component {
       id: null,
       name: "",
     },
-    user_names: [], 
-    friend_requests: [],
-    friend_requests_as_receiver: [],
-    friend_requests_as_requestor: [],
-    location: [], 
-    locate_user: [], 
     token: ""
   }
 
@@ -53,9 +47,6 @@ class App extends React.Component {
           id: json.user.data.attributes.id,
           name: json.user.data.attributes.name,
         },
-        user_names: [], 
-        friend_requests_as_receiver: json.user.data.attributes.friend_requests_as_receiver, 
-        friend_requests_as_requestor: json.user.data.attributes.friend_requests_as_requestor, 
         token: json.token
       }, () => this.props.history.push('/user_main'))
     }
