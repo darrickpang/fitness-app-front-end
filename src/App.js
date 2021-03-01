@@ -11,6 +11,10 @@ class App extends React.Component {
       id: null,
       name: "",
     },
+    user_names: [], 
+    friend_requests: [],
+    friend_requests_as_receiver: [],
+    friend_requests_as_requestor: [],
     token: ""
   }
 
@@ -47,6 +51,9 @@ class App extends React.Component {
           id: json.user.data.attributes.id,
           name: json.user.data.attributes.name,
         },
+        user_names: [], 
+        friend_requests_as_receiver: json.user.data.attributes.friend_requests_as_receiver, 
+        friend_requests_as_requestor: json.user.data.attributes.friend_requests_as_requestor, 
         token: json.token
       }, () => this.props.history.push('/user_main'))
     }
