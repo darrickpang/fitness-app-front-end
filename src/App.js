@@ -11,10 +11,9 @@ class App extends React.Component {
       id: null,
       name: "",
     },
-    user_names: [], 
-    friend_requests: [],
-    friend_requests_as_receiver: [],
-    friend_requests_as_requestor: [],
+    exercises: [],
+    goals: [],
+    activities: [],
     token: ""
   }
 
@@ -30,17 +29,17 @@ class App extends React.Component {
     }
 
     //all user names 
-    fetch('http://localhost:3000/locators')
+    fetch('http://localhost:3000/exercises')
     .then(res => res.json())
-    .then(json => this.setState({location: json}))
+    .then(json => this.setState({exercises: json}))
 
-    fetch('http://localhost:3000/locate_users')
+    fetch('http://localhost:3000/goals')
     .then(res => res.json())
-    .then(json => this.setState({user_names: json}))
+    .then(json => this.setState({goals: json}))
 
-    fetch('http://localhost:3000/users')
+    fetch('http://localhost:3000/activities')
     .then(res => res.json())
-    .then(json => this.setState({user_names: json}))
+    .then(json => this.setState({activities: json}))
   }
 
   userAuthResponse = (json) => {
