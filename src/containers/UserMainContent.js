@@ -1,6 +1,7 @@
 import React from 'react';
 import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import UserNavContainer from './UserNavContainer'
 
 class UserMainContent extends React.Component {
     renderUserInfo = () => {
@@ -21,13 +22,15 @@ class UserMainContent extends React.Component {
         )
     }
 
+    render
+
     render(){
-        let {addChemical, updateChemical, user} = this.props
         return(
             <div className="main-page">
                 Welcome to your main page. 
                 {this.renderUserInfo()}
-                {this.renderLogout()}               
+                {this.renderLogout()}       
+                <UserNavContainer/>        
             </div> 
         )
     }
