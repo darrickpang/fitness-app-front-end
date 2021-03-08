@@ -22,6 +22,7 @@ class UserNavContainer extends React.Component {
             <div>
                 User Navigation
                 {this.renderGoals()}
+                {this.renderActivities()}
             </div>
         )
     }

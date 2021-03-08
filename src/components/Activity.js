@@ -46,7 +46,7 @@ class Activity extends React.Component {
             e.target.parentElement.reset()
         }
         else{
-            alert("You must include a name and date to create a new goal.")
+            alert("You must include a name and date to create a new activity.")
         }
     }
 
@@ -72,13 +72,12 @@ class Activity extends React.Component {
 
     render() {
         let {addActivity, updateDate, deleteDate, classes, student_dates, show} = this.props
-        if (!classes) {
-            return <span>Loading...</span>;
-        }
-        console.log(this.props.student_classes)
+        // if (!classes) {
+        //     return <span>Loading...</span>;
+        // }
+
         return (
             <div>
-                 <div>
                 Add Activity
                 <CardBody>
                     <Form onSubmit={(e) => this.handleSubmit(e, addActivity)}>
@@ -97,7 +96,6 @@ class Activity extends React.Component {
                         <Button className="button">Add goal</Button>
                     </Form> 
                 </CardBody>
-            </div>
             </div>
         )
     }
