@@ -28,7 +28,7 @@ class App extends React.Component {
       .then(json => this.userAuthResponse(json))
     }
 
-    //all user names 
+    //exercises, goals, activities
     fetch('http://localhost:3000/exercises')
     .then(res => res.json())
     .then(json => this.setState({exercises: json}))
@@ -153,6 +153,69 @@ class App extends React.Component {
   //   })
   // }
 
+  // Exercises
+  addExercise = (newExercise) => {
+    fetch(`http://localhost:3000/exercises`, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+      },
+      body: JSON.stringify(newExercise),
+  }) 
+  .then(r => r.json())
+  .then(json => {
+      this.setState({
+        exercises: [...this.state.exercises, {
+          id: json.id,
+          name: json.name
+        }]
+      })
+    })
+  }
+
+  // Goals
+  addGoal = (newGoal) => {
+    fetch(`http://localhost:3000/exercises`, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+      },
+      body: JSON.stringify(newGoal),
+  }) 
+  .then(r => r.json())
+  .then(json => {
+      this.setState({
+        goals: [...this.state.goals, {
+          id: json.id,
+          name: json.name
+        }]
+      })
+    })
+  }
+
+  // Activities
+  addActivity = (newActivity) => {
+    fetch(`http://localhost:3000/activities`, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+      },
+      body: JSON.stringify(newActivity),
+  }) 
+  .then(r => r.json())
+  .then(json => {
+      this.setState({
+        activities: [...this.state.activities, {
+          id: json.id,
+          name: json.name
+        }]
+      })
+    })
+  }
+
   renderUserLogin = () => {
     return <UserLoginSignUp login={true} userLogin={this.userLogin}/>
   }
@@ -162,7 +225,7 @@ class App extends React.Component {
   }
 
   renderUserMainContent = () => {
-    return <UserMainContent user ={this.state.user} token={this.state.token}/>
+    return <UserMainContent user ={this.state.user} token={this.state.token} addExercise={this.addExercise} addActivity={this.addActivity} addGoal={this.addGoal}/>
   }
 
   render(){

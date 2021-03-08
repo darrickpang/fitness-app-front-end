@@ -5,7 +5,7 @@ class UserNavContainer extends React.Component {
     render(){
         return(
             <div>
-                User Navigatiob
+                User Navigation
             </div>
         )
     }

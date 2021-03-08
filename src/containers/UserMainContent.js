@@ -22,8 +22,6 @@ class UserMainContent extends React.Component {
         )
     }
 
-    render
-
     render(){
         return(
             <div className="main-page">
