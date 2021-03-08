@@ -6,7 +6,7 @@ class UserNavContainer extends React.Component {
 
     renderGoals = () => {
         return(
-            <Goal addGoal={addGoal}/>
+            <Goal addGoal={this.props.addGoal}/>
         )
     }
 
