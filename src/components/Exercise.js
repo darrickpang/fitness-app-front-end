@@ -66,9 +66,6 @@ class Exercise extends React.Component {
 
     render() {
         let {addExercise, updateDate, deleteDate, classes, student_dates, show} = this.props
-        // if (!classes) {
-        //     return <span>Loading...</span>;
-        // }
 
         return (
             <div>

@@ -67,9 +67,7 @@ class Goal extends React.Component {
 
     render() {
         let {addGoal, updateDate, deleteDate, classes, student_dates, show} = this.props
-        // if (!classes) {
-        //     return <span>Loading...</span>;
-        // }
+
         console.log(this.props.student_classes)
         return (
             <div>

@@ -72,9 +72,6 @@ class Activity extends React.Component {
 
     render() {
         let {addActivity, updateDate, deleteDate, classes, student_dates, show} = this.props
-        // if (!classes) {
-        //     return <span>Loading...</span>;
-        // }
 
         return (
             <div>
