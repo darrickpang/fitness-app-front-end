@@ -2,13 +2,12 @@ import React from 'react';
 import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import {CardBody, Button, Form, Input, FormGroup, Row, Col, Label} from 'reactstrap'
 
-class Activity extends React.Component {
+class Exercise extends React.Component {
     
     state = {
         id: null, 
         name: null,
-        date: null, 
-        activityAdd: true
+        exerciseAdd: true
     }
     
     handleOnChange = (e) => {
@@ -17,20 +16,18 @@ class Activity extends React.Component {
         })
     }
 
-    handleSubmit = (e, addActivity) => {
+    handleSubmit = (e, addExercise) => {
         e.preventDefault()
-        let {name, date} = this.state
+        let {name} = this.state
         if(name !== null ){
             let date_info = {
-                name: name,
-                date: date, 
-                user_id: parseInt(this.props.user.id)
+                name: name
             }
             // persist to database
-            if(this.state.activityAdd){
-                addActivity(date_info)
+            if(this.state.exerciseAdd){
+                addExercise(date_info)
             } 
-            // else if(!this.state.activityAdd && e.target.name === "update"){
+            // else if(!this.state.exerciseAdd && e.target.name === "update"){
             //     updateDate(this.state.id, date_info)
             // }
             // else {
@@ -40,8 +37,7 @@ class Activity extends React.Component {
             this.setState({
                 id: null,
                 name: null,
-                date: null, 
-                activityAdd: true
+                exerciseAdd: true
             })
             e.target.parentElement.reset()
         }
@@ -55,8 +51,7 @@ class Activity extends React.Component {
             this.setState({
                 id: null,
                 name: null,
-                date: null, 
-                activityAdd: true
+                exerciseAdd: true
             })
         }
         else{
@@ -64,36 +59,30 @@ class Activity extends React.Component {
             this.setState({
                 id: find_date.id,
                 name: find_date.name,
-                date: find_date.date, 
-                activityAdd: false
+                exerciseAdd: false
             })
         }
     }
 
     render() {
-        let {addActivity, updateDate, deleteDate, classes, student_dates, show} = this.props
+        let {addExercise, updateDate, deleteDate, classes, student_dates, show} = this.props
         // if (!classes) {
         //     return <span>Loading...</span>;
         // }
 
         return (
             <div>
-                Add Activity
+                Add Exercise
                 <CardBody>
-                    <Form onSubmit={(e) => this.handleSubmit(e, addActivity)}>
+                    <Form onSubmit={(e) => this.handleSubmit(e, addExercise)}>
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Activity name" value={this.state.name} onChange={this.handleOnChange}/>
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
+                                    <Input type="text" name="level" id="level" placeholder="Exercise name" value={this.state.name} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Button className="button">Add Activity</Button>
+                        <Button className="button">Add Exercise</Button>
                     </Form> 
                 </CardBody>
             </div>
@@ -101,4 +90,4 @@ class Activity extends React.Component {
     }
 }
 
-export default withRouter(Activity)
+export default withRouter(Exercise)
