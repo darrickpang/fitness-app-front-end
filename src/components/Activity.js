@@ -2,12 +2,13 @@ import React from 'react';
 import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import {CardBody, Button, Form, Input, FormGroup, Row, Col, Label} from 'reactstrap'
 
-class Goal extends React.Component {
+class Activity extends React.Component {
     
     state = {
         id: null, 
         name: null,
-        goalAdd: true
+        date: null, 
+        activityAdd: true
     }
     
     handleOnChange = (e) => {
@@ -16,19 +17,20 @@ class Goal extends React.Component {
         })
     }
 
-    handleSubmit = (e, addGoal) => {
+    handleSubmit = (e, addActivity) => {
         e.preventDefault()
-        let {name} = this.state
+        let {name, date} = this.state
         if(name !== null ){
             let date_info = {
                 name: name,
+                date: date, 
                 user_id: parseInt(this.props.user.id)
             }
             // persist to database
-            if(this.state.goalAdd){
-                addGoal(date_info)
+            if(this.state.activityAdd){
+                addActivity(date_info)
             } 
-            // else if(!this.state.goalAdd && e.target.name === "update"){
+            // else if(!this.state.activityAdd && e.target.name === "update"){
             //     updateDate(this.state.id, date_info)
             // }
             // else {
@@ -38,7 +40,8 @@ class Goal extends React.Component {
             this.setState({
                 id: null,
                 name: null,
-                goalAdd: true
+                date: null, 
+                activityAdd: true
             })
             e.target.parentElement.reset()
         }
@@ -52,7 +55,8 @@ class Goal extends React.Component {
             this.setState({
                 id: null,
                 name: null,
-                goalAdd: true
+                date: null, 
+                activityAdd: true
             })
         }
         else{
@@ -60,13 +64,14 @@ class Goal extends React.Component {
             this.setState({
                 id: find_date.id,
                 name: find_date.name,
-                goalAdd: false
+                date: find_date.date, 
+                activityAdd: false
             })
         }
     }
 
     render() {
-        let {addGoal, updateDate, deleteDate, classes, student_dates, show} = this.props
+        let {addActivity, updateDate, deleteDate, classes, student_dates, show} = this.props
         if (!classes) {
             return <span>Loading...</span>;
         }
@@ -74,13 +79,18 @@ class Goal extends React.Component {
         return (
             <div>
                  <div>
-                Add Goal
+                Add Activity
                 <CardBody>
-                    <Form onSubmit={(e) => this.handleSubmit(e, addGoal)}>
+                    <Form onSubmit={(e) => this.handleSubmit(e, addActivity)}>
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Goal" value={this.state.name} onChange={this.handleOnChange}/>
+                                    <Input type="text" name="level" id="level" placeholder="Activity name" value={this.state.name} onChange={this.handleOnChange}/>
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Input type="text" name="level" id="level" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -93,4 +103,4 @@ class Goal extends React.Component {
     }
 }
 
-export default withRouter(Goal)
+export default withRouter(Activity)
