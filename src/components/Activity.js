@@ -8,7 +8,8 @@ class Activity extends React.Component {
         id: null, 
         name: null,
         date: null, 
-        activityAdd: true
+        activityAdd: true,
+        deleteActivity: false
     }
     
     handleOnChange = (e) => {
@@ -30,13 +31,13 @@ class Activity extends React.Component {
             if(this.state.activityAdd){
                 addActivity(date_info)
             } 
-            // else if(!this.state.activityAdd && e.target.name === "update"){
-            //     updateDate(this.state.id, date_info)
-            // }
-            // else {
-            //     deleteDate(this.state.id, date_info)
-            // }
-            // reset state
+            else if(!this.state.activityAdd && e.target.name === "update"){
+                updateActivity(this.state.id, date_info)
+            }
+            else {
+                deleteActivity(this.state.id, date_info)
+            }
+            //reset state
             this.setState({
                 id: null,
                 name: null,
