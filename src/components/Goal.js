@@ -7,7 +7,8 @@ class Goal extends React.Component {
     state = {
         id: null, 
         name: null,
-        goalAdd: true
+        goalAdd: true,
+        deleteGoal: false
     }
     
     handleOnChange = (e) => {
@@ -16,7 +17,7 @@ class Goal extends React.Component {
         })
     }
 
-    handleSubmit = (e, addGoal) => {
+    handleSubmit = (e, addGoal, updateGoal, deleteGoal) => {
         e.preventDefault()
         let {name} = this.state
         if(name !== null ){
@@ -28,12 +29,12 @@ class Goal extends React.Component {
             if(this.state.goalAdd){
                 addGoal(date_info)
             } 
-            // else if(!this.state.goalAdd && e.target.name === "update"){
-            //     updateDate(this.state.id, date_info)
-            // }
-            // else {
-            //     deleteDate(this.state.id, date_info)
-            // }
+            else if(!this.state.goalAdd && e.target.name === "update"){
+                updateGoal(this.state.id, date_info)
+            }
+            else {
+                deleteGoal(this.state.id, date_info)
+            }
             // reset state
             this.setState({
                 id: null,
@@ -65,8 +66,17 @@ class Goal extends React.Component {
         }
     }
 
+    generateDateDropdownOptions = (goals) => {
+        return goals.map(goal => {
+            return <option id={goal.id} key={goal.id} value={goal.id}>
+                    {goal.date}, {goal.name}
+                </option>
+            }
+        )
+    }
+
     render() {
-        let {addGoal, updateDate, deleteDate, classes, student_dates, show} = this.props
+        let {addGoal, updateGoal, deleteGoal, goals} = this.props
 
         console.log(this.props.student_classes)
         return (
@@ -83,6 +93,17 @@ class Goal extends React.Component {
                             </Col>
                         </Row>
                         <Button className="button">Add goal</Button>
+                        <FormGroup onChange={(e) => this.autoFillForm(e.target.value, goals)}>
+                            <Label for="edit-schedule">Change goal</Label>
+                            <Input type="select" name="select" id="edit-schedule">
+                                <option value={"n/a"}>Select schedule</option>
+                                {goals ? this.generateDateDropdownOptions(goals) : false}
+                            </Input>
+                        </FormGroup>
+                        <Button className="button" name="update" onClick={(e) => this.handleSubmit(e, addGoal, updateGoal, deleteGoal)}>Add or update Goal</Button>
+                        {this.state.deleteGoal ? 
+                            <Button className="button"onClick={(e) => this.handleSubmit(e, addGoal, updateGoal, deleteGoal)}>Delete Goal</Button> : false
+                        }
                     </Form> 
                 </CardBody>
             </div>

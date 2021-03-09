@@ -43,7 +43,7 @@ class Exercise extends React.Component {
             e.target.parentElement.reset()
         }
         else{
-            alert("You must include a name and date to create a new activity.")
+            alert("You must include a name and date to create a new exercise.")
         }
     }
 
@@ -63,6 +63,15 @@ class Exercise extends React.Component {
                 exerciseAdd: false
             })
         }
+    }
+
+    generateDateDropdownOptions = (exercises) => {
+        return exercises.map(exercise => {
+            return <option id={exercise.id} key={exercise.id} value={exercise.id}>
+                    {exercise.date}, {exercise.name}
+                </option>
+            }
+        )
     }
 
     render() {
