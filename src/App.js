@@ -216,6 +216,50 @@ class App extends React.Component {
     })
   }
 
+  updateActivity = (id, date_info) => {
+    fetch(`http://localhost:3000/activities/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(date_info)
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log('updated')
+      let activities = this.state.activities.map(date_info => {
+        if(date_info.id === json.id){
+            let newActivity = {
+                  id: json.id,
+                  name: json.name,
+                  user_id: json.user_id
+            }
+            return newActivity
+            }
+            else{
+              return date_info
+            }
+        })
+        this.setState({
+            activities: activities
+    })})
+  }
+
+  deleteActivity = (id, activity) => {
+    fetch(`http://localhost:3000/activities/${id}`, {
+      method: 'DELETE'
+    }) 
+    .then(r => r.json())
+    .then(json => {
+      console.log('deleted')
+      let activities = this.state.activities.filter(activity => activity.id !== id)
+      this.setState({
+        activities: activities
+      })
+    })
+  }
+
   renderUserLogin = () => {
     return <UserLoginSignUp login={true} userLogin={this.userLogin}/>
   }
@@ -225,7 +269,9 @@ class App extends React.Component {
   }
 
   renderUserMainContent = () => {
-    return <UserMainContent user ={this.state.user} token={this.state.token} addExercise={this.addExercise} addActivity={this.addActivity} addGoal={this.addGoal}/>
+    return <UserMainContent user ={this.state.user} token={this.state.token} addExercise={this.addExercise} addActivity={this.addActivity} addGoal={this.addGoal}
+              updateActivity={this.updateActivity} deleteActivity={this.deleteActivity}
+          />
   }
 
   render(){
