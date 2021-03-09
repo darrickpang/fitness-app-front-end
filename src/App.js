@@ -174,6 +174,49 @@ class App extends React.Component {
     })
   }
 
+  updateExercise = (id, date_info) => {
+    fetch(`http://localhost:3000/exercises/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(date_info)
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log('updated')
+      let exercises = this.state.exercises.map(date_info => {
+        if(date_info.id === json.id){
+            let newDate = {
+                  id: json.id,
+                  name: json.name
+            }
+            return newDate
+            }
+            else{
+              return date_info
+            }
+        })
+        this.setState({
+            exercises: exercises
+    })})
+  }
+
+  deleteExercise = (id, exercise) => {
+    fetch(`http://localhost:3000/exercises/${id}`, {
+      method: 'DELETE'
+    }) 
+    .then(r => r.json())
+    .then(json => {
+      console.log('deleted')
+      let exercises = this.state.exercises.filter(exercise => exercise.id !== id)
+      this.setState({
+        exercises: exercises
+      })
+    })
+  }
+
   // Goals
   addGoal = (newGoal) => {
     fetch(`http://localhost:3000/exercises`, {
@@ -191,6 +234,51 @@ class App extends React.Component {
           id: json.id,
           name: json.name
         }]
+      })
+    })
+  }
+
+  updateDate = (id, date_info) => {
+    fetch(`http://localhost:3000/student_dates/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(date_info)
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log('updated')
+      let student_dates = this.state.student_dates.map(date_info => {
+        if(date_info.id === json.id){
+            let newDate = {
+                  id: json.id,
+                  class_name: json.class_name,
+                  date: json.date,
+                  student_id: json.student_id
+            }
+            return newDate
+            }
+            else{
+              return date_info
+            }
+        })
+        this.setState({
+            student_dates: student_dates
+    })})
+  }
+
+  deleteDate = (id, date) => {
+    fetch(`http://localhost:3000/student_dates/${id}`, {
+      method: 'DELETE'
+    }) 
+    .then(r => r.json())
+    .then(json => {
+      console.log('deleted')
+      let student_dates = this.state.student_dates.filter(date => date.id !== id)
+      this.setState({
+        student_dates: student_dates
       })
     })
   }
