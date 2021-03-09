@@ -18,7 +18,7 @@ class Activity extends React.Component {
         })
     }
 
-    handleSubmit = (e, addActivity) => {
+    handleSubmit = (e, addActivity, updateActivity, deleteActivity) => {
         e.preventDefault()
         let {name, date} = this.state
         if(name !== null ){
@@ -71,8 +71,17 @@ class Activity extends React.Component {
         }
     }
 
+    generateDateDropdownOptions = (activities) => {
+        return activities.map(activity => {
+            return <option id={activity.id} key={activity.id} value={activity.id}>
+                    {activity.date}, {activity.name}
+                </option>
+            }
+        )
+    }
+
     render() {
-        let {addActivity, updateDate, deleteDate, classes, student_dates, show} = this.props
+        let {addActivity, updateActivity, deleteActivity, activities} = this.props
 
         return (
             <div>
@@ -91,7 +100,17 @@ class Activity extends React.Component {
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Button className="button">Add Activity</Button>
+                        <FormGroup onChange={(e) => this.autoFillForm(e.target.value, activities)}>
+                            <Label for="edit-schedule">Change schedule</Label>
+                            <Input type="select" name="select" id="edit-schedule">
+                                <option value={"n/a"}>Select schedule</option>
+                                {activities ? this.generateDateDropdownOptions(activities) : false}
+                            </Input>
+                        </FormGroup>
+                        <Button className="button" name="update" onClick={(e) => this.handleSubmit(e, addActivity, updateActivity, deleteActivity)}>Add or update Activity</Button>
+                        {this.state.deleteActivity ? 
+                            <Button className="button"onClick={(e) => this.handleSubmit(e, addActivity, updateActivity, deleteActivity)}>Delete Schedule</Button> : false
+                        }
                     </Form> 
                 </CardBody>
             </div>

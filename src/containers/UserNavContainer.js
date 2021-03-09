@@ -13,8 +13,9 @@ class UserNavContainer extends React.Component {
     }
 
     renderActivities = () => {
+        let {addActivity, updateActivity, deleteActivity, user} = this.props
         return(
-            <Activity addActivity={this.props.addActivity}/>
+            <Activity addActivity={addActivity} updateActivity={updateActivity} deleteActivity={deleteActivity}/>
         )
     }
 

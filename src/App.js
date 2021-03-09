@@ -270,7 +270,7 @@ class App extends React.Component {
 
   renderUserMainContent = () => {
     return <UserMainContent user ={this.state.user} token={this.state.token} addExercise={this.addExercise} addActivity={this.addActivity} addGoal={this.addGoal}
-              updateActivity={this.updateActivity} deleteActivity={this.deleteActivity}
+              updateActivity={this.updateActivity} deleteActivity={this.deleteActivity} activities={this.state.activities}
           />
   }
 
