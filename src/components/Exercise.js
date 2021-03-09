@@ -7,7 +7,8 @@ class Exercise extends React.Component {
     state = {
         id: null, 
         name: null,
-        exerciseAdd: true
+        exerciseAdd: true,
+        deleteExercise: false
     }
     
     handleOnChange = (e) => {
@@ -16,7 +17,7 @@ class Exercise extends React.Component {
         })
     }
 
-    handleSubmit = (e, addExercise) => {
+    handleSubmit = (e, addExercise, updateExercise, deleteExercise) => {
         e.preventDefault()
         let {name} = this.state
         if(name !== null ){
@@ -27,12 +28,12 @@ class Exercise extends React.Component {
             if(this.state.exerciseAdd){
                 addExercise(date_info)
             } 
-            // else if(!this.state.exerciseAdd && e.target.name === "update"){
-            //     updateDate(this.state.id, date_info)
-            // }
-            // else {
-            //     deleteDate(this.state.id, date_info)
-            // }
+            else if(!this.state.exerciseAdd && e.target.name === "update"){
+                updateExercise(this.state.id, date_info)
+            }
+            else {
+                deleteExercise(this.state.id, date_info)
+            }
             // reset state
             this.setState({
                 id: null,
@@ -65,7 +66,7 @@ class Exercise extends React.Component {
     }
 
     render() {
-        let {addExercise, updateDate, deleteDate, classes, student_dates, show} = this.props
+        let {addExercise, updateExercise, deleteExercise, exercises} = this.props
 
         return (
             <div>
@@ -80,6 +81,17 @@ class Exercise extends React.Component {
                             </Col>
                         </Row>
                         <Button className="button">Add Exercise</Button>
+                        <FormGroup onChange={(e) => this.autoFillForm(e.target.value, exercises)}>
+                            <Label for="edit-schedule">Change exercise</Label>
+                            <Input type="select" name="select" id="edit-schedule">
+                                <option value={"n/a"}>Select exercise</option>
+                                {exercises ? this.generateDateDropdownOptions(exercises) : false}
+                            </Input>
+                        </FormGroup>
+                        <Button className="button" name="update" onClick={(e) => this.handleSubmit(e, addExercise, updateExercise, deleteExercise)}>Add or update Exercise</Button>
+                        {this.state.deleteExercise ? 
+                            <Button className="button"onClick={(e) => this.handleSubmit(e, addExercise, updateExercise, deleteExercise)}>Delete Schedule</Button> : false
+                        }
                     </Form> 
                 </CardBody>
             </div>
