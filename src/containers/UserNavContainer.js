@@ -20,8 +20,9 @@ class UserNavContainer extends React.Component {
     }
 
     renderExercises = () => {
+        let {addExercise, updateExercise, deleteExercise} = this.props
         return(
-            <Exercise addExercise={this.props.addExercise}/>
+            <Exercise addExercise={addExercise} updateExercise={updateExercise} deleteExercise={deleteExercise}/>
         )
     }
 

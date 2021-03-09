@@ -188,11 +188,11 @@ class App extends React.Component {
       console.log('updated')
       let exercises = this.state.exercises.map(date_info => {
         if(date_info.id === json.id){
-            let newDate = {
+            let newExercise = {
                   id: json.id,
                   name: json.name
             }
-            return newDate
+            return newExercise
             }
             else{
               return date_info
@@ -238,8 +238,8 @@ class App extends React.Component {
     })
   }
 
-  updateDate = (id, date_info) => {
-    fetch(`http://localhost:3000/student_dates/${id}`, {
+  updateGoal = (id, date_info) => {
+    fetch(`http://localhost:3000/goals/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -250,7 +250,7 @@ class App extends React.Component {
     .then(res => res.json())
     .then(json => {
       console.log('updated')
-      let student_dates = this.state.student_dates.map(date_info => {
+      let goals = this.state.goals.map(date_info => {
         if(date_info.id === json.id){
             let newDate = {
                   id: json.id,
@@ -265,20 +265,20 @@ class App extends React.Component {
             }
         })
         this.setState({
-            student_dates: student_dates
+            goals: goals
     })})
   }
 
-  deleteDate = (id, date) => {
-    fetch(`http://localhost:3000/student_dates/${id}`, {
+  deleteGoal = (id, goal) => {
+    fetch(`http://localhost:3000/goals/${id}`, {
       method: 'DELETE'
     }) 
     .then(r => r.json())
     .then(json => {
       console.log('deleted')
-      let student_dates = this.state.student_dates.filter(date => date.id !== id)
+      let goals = this.state.goals.filter(goal => goal.id !== id)
       this.setState({
-        student_dates: student_dates
+        goals: goals
       })
     })
   }
@@ -357,8 +357,10 @@ class App extends React.Component {
   }
 
   renderUserMainContent = () => {
-    return <UserMainContent user ={this.state.user} token={this.state.token} addExercise={this.addExercise} addActivity={this.addActivity} addGoal={this.addGoal}
-              updateActivity={this.updateActivity} deleteActivity={this.deleteActivity} activities={this.state.activities}
+    return <UserMainContent user ={this.state.user} token={this.state.token} addActivity={this.addActivity} 
+            updateActivity={this.updateActivity} deleteActivity={this.deleteActivity} activities={this.state.activities} 
+            addGoal={this.addGoal} updateGoal={this.updateGoal} deleteGoal={this.deleteGoal} goals={this.state.goals}
+            addExercise={this.addExercise} updateExercise={this.updateExercise} deleteExercise={this.deleteExercise}
           />
   }
 
