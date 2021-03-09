@@ -23,7 +23,7 @@ class UserMainContent extends React.Component {
     }
 
     render(){
-        let {addExercise, updateExercise, deleteExercise, addGoal, addActivity, updateActivity, deleteActivity, user, activities, exercises} = this.props
+        let {addExercise, updateExercise, deleteExercise, addGoal, addActivity, updateActivity, deleteActivity, user, activities, exercises, updateGoal, deleteGoal, goals} = this.props
         return(
             <div className="main-page">
                 Welcome to your main page. 
@@ -32,6 +32,7 @@ class UserMainContent extends React.Component {
                 <UserNavContainer addActivity={addActivity} addGoal={addGoal} addExercise={addExercise} user={user} 
                     updateActivity={updateActivity} deleteActivity={deleteActivity} activities={activities}
                     updateExercise={updateExercise} deleteExercise={deleteExercise} exercises={exercises}
+                    updateGoal={updateGoal} deleteGoal={deleteGoal} goals={goals}
                 />        
             </div> 
         )
