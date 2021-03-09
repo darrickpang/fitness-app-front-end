@@ -252,13 +252,11 @@ class App extends React.Component {
       console.log('updated')
       let goals = this.state.goals.map(date_info => {
         if(date_info.id === json.id){
-            let newDate = {
+            let newGoal = {
                   id: json.id,
-                  class_name: json.class_name,
-                  date: json.date,
-                  student_id: json.student_id
+                  name: json.name,
             }
-            return newDate
+            return newGoal
             }
             else{
               return date_info
