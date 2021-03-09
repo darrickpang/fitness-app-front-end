@@ -86,7 +86,7 @@ class Activity extends React.Component {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
+                                    <Input type="date" name="level" id="level" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                         </Row>
