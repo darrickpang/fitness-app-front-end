@@ -11,6 +11,10 @@ class Activity extends React.Component {
         activityAdd: true,
         deleteActivity: false
     }
+
+    componentDidMount(){
+        
+    }
     
     handleOnChange = (e) => {
         this.setState({
@@ -99,6 +103,9 @@ class Activity extends React.Component {
                                     <Input type="date" name="level" id="level" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
+                        </Row>
+                        <Row form>
+                            
                         </Row>
                         <FormGroup onChange={(e) => this.autoFillForm(e.target.value, activities)}>
                             <Label for="edit-schedule">Change activity</Label>

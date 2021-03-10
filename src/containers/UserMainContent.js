@@ -4,6 +4,15 @@ import { Button } from 'reactstrap';
 import UserNavContainer from './UserNavContainer'
 
 class UserMainContent extends React.Component {
+
+    state = {
+        activities: []
+    }
+
+    componentDidMount(){
+        
+    }
+
     renderUserInfo = () => {
         return (
             <div className="student-info">
