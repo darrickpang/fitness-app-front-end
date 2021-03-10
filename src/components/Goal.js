@@ -96,7 +96,7 @@ class Goal extends React.Component {
                         <FormGroup onChange={(e) => this.autoFillForm(e.target.value, goals)}>
                             <Label for="edit-schedule">Change goal</Label>
                             <Input type="select" name="select" id="edit-schedule">
-                                <option value={"n/a"}>Select schedule</option>
+                                <option value={"n/a"}>Select goal</option>
                                 {goals ? this.generateDateDropdownOptions(goals) : false}
                             </Input>
                         </FormGroup>

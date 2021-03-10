@@ -101,9 +101,9 @@ class Activity extends React.Component {
                             </Col>
                         </Row>
                         <FormGroup onChange={(e) => this.autoFillForm(e.target.value, activities)}>
-                            <Label for="edit-schedule">Change schedule</Label>
+                            <Label for="edit-schedule">Change activity</Label>
                             <Input type="select" name="select" id="edit-schedule">
-                                <option value={"n/a"}>Select schedule</option>
+                                <option value={"n/a"}>Select activity</option>
                                 {activities ? this.generateDateDropdownOptions(activities) : false}
                             </Input>
                         </FormGroup>
