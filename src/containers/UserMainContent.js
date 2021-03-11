@@ -10,7 +10,9 @@ class UserMainContent extends React.Component {
     }
 
     componentDidMount(){
-        
+        fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${process.env.REACT_APP_access_token}`)
+        .then(res => res.json())
+        .then(json => this.setState({activities: json}))
     }
 
     renderUserInfo = () => {
@@ -31,6 +33,15 @@ class UserMainContent extends React.Component {
         )
     }
 
+    renderActivities =() => {
+        console.log(this.state.activities)
+        return(
+            <div>
+                {this.state.activities}
+            </div>
+        )
+    }
+
     render(){
         let {addExercise, updateExercise, deleteExercise, addGoal, addActivity, updateActivity, deleteActivity, user, activities, exercises, updateGoal, deleteGoal, goals} = this.props
         return(
@@ -42,7 +53,7 @@ class UserMainContent extends React.Component {
                     updateActivity={updateActivity} deleteActivity={deleteActivity} activities={activities}
                     updateExercise={updateExercise} deleteExercise={deleteExercise} exercises={exercises}
                     updateGoal={updateGoal} deleteGoal={deleteGoal} goals={goals}
-                />        
+                />      
             </div> 
         )
     }
