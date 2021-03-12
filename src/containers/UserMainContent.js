@@ -34,15 +34,19 @@ class UserMainContent extends React.Component {
     }
 
     renderActivities =() => {
-        console.log(this.state.activities)
         return(
             <div>
-                {this.state.activities}
+                {this.state.activities.slice(0).reverse().map(activity => {
+                    return(
+                        <p>{activity.name}</p>
+                    )
+                })}
             </div>
         )
     }
 
     render(){
+        console.log(this.state.activities)
         let {addExercise, updateExercise, deleteExercise, addGoal, addActivity, updateActivity, deleteActivity, user, activities, exercises, updateGoal, deleteGoal, goals} = this.props
         return(
             <div className="main-page">
@@ -53,7 +57,8 @@ class UserMainContent extends React.Component {
                     updateActivity={updateActivity} deleteActivity={deleteActivity} activities={activities}
                     updateExercise={updateExercise} deleteExercise={deleteExercise} exercises={exercises}
                     updateGoal={updateGoal} deleteGoal={deleteGoal} goals={goals}
-                />      
+                /> 
+                {this.renderActivities()}     
             </div> 
         )
     }

@@ -78,7 +78,6 @@ class Goal extends React.Component {
     render() {
         let {addGoal, updateGoal, deleteGoal, goals} = this.props
 
-        console.log(this.props.student_classes)
         return (
             <div>
                  <div>
