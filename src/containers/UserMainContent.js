@@ -38,7 +38,7 @@ class UserMainContent extends React.Component {
             <div>
                 {this.state.activities.map(activity => {
                     return(
-                        <p>{activity.name}, {activity.start_date}</p>
+                        <p>{activity.name}, {activity.start_date_local}, {activity.type}, {activity.kudos_count}</p>
                     )
                 })}
             </div>
