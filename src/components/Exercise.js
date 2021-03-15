@@ -85,7 +85,7 @@ class Exercise extends React.Component {
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Exercise name" value={this.state.name} onChange={this.handleOnChange}/>
+                                    <Input type="text" name="name" id="name" placeholder="Exercise name" value={this.state.name} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                         </Row>

@@ -95,12 +95,12 @@ class Activity extends React.Component {
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Activity name" value={this.state.name} onChange={this.handleOnChange}/>
+                                    <Input type="text" name="name" id="name" placeholder="Activity name" value={this.state.name} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="date" name="level" id="level" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
+                                    <Input type="date" name="date" id="date" placeholder="Activity date" value={this.state.date} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                         </Row>
