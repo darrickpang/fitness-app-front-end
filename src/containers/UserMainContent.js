@@ -36,9 +36,9 @@ class UserMainContent extends React.Component {
     renderActivities =() => {
         return(
             <div>
-                {this.state.activities.slice(0).reverse().map(activity => {
+                {this.state.activities.map(activity => {
                     return(
-                        <p>{activity.name}</p>
+                        <p>{activity.name}, {activity.start_date}</p>
                     )
                 })}
             </div>
