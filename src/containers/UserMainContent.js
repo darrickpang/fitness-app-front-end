@@ -15,6 +15,26 @@ class UserMainContent extends React.Component {
         .then(json => this.setState({activities: json}))
     }
 
+    addActivity = (newActivity) => {
+        fetch(`http://localhost:3000/activities`, {
+          method: 'POST', 
+          headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json'
+          },
+          body: JSON.stringify(newActivity),
+      }) 
+      .then(r => r.json())
+      .then(json => {
+          this.setState({
+            activities: [...this.state.activities, {
+              id: json.id,
+              name: json.name
+            }]
+          })
+        })
+      }
+
     renderUserInfo = () => {
         return (
             <div className="student-info">

@@ -43,7 +43,7 @@ class Exercise extends React.Component {
             e.target.parentElement.reset()
         }
         else{
-            alert("You must include a name and date to create a new exercise.")
+            alert("You must include a name to create a new exercise.")
         }
     }
 
@@ -89,7 +89,6 @@ class Exercise extends React.Component {
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Button className="button">Add Exercise</Button>
                         <FormGroup onChange={(e) => this.autoFillForm(e.target.value, exercises)}>
                             <Label for="edit-schedule">Change exercise</Label>
                             <Input type="select" name="select" id="edit-schedule">

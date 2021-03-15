@@ -7,16 +7,16 @@ import Exercise from '../components/Exercise'
 class UserNavContainer extends React.Component {
 
     renderGoals = () => {
-        let {addGoal, updateGoal, deleteGoal, goals} = this.props
+        let {addGoal, updateGoal, deleteGoal, goals, user} = this.props
         return(
-            <Goal addGoal={addGoal} updateGoal={updateGoal} deleteGoal={deleteGoal} goals={goals}/>
+            <Goal addGoal={addGoal} updateGoal={updateGoal} deleteGoal={deleteGoal} goals={goals} user={user}/>
         )
     }
 
     renderActivities = () => {
-        let {addActivity, updateActivity, deleteActivity, activities} = this.props
+        let {addActivity, updateActivity, deleteActivity, activities, user} = this.props
         return(
-            <Activity addActivity={addActivity} updateActivity={updateActivity} deleteActivity={deleteActivity} activities={activities}/>
+            <Activity addActivity={addActivity} updateActivity={updateActivity} deleteActivity={deleteActivity} activities={activities} user={user}/>
         )
     }
 

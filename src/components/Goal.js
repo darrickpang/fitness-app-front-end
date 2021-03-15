@@ -39,13 +39,16 @@ class Goal extends React.Component {
             this.setState({
                 id: null,
                 name: null,
-                goalAdd: true
+                goalAdd: true,
+                deleteGoal: false
             })
             e.target.parentElement.reset()
         }
+        
         else{
-            alert("You must include a name and date to create a new goal.")
+            alert("You must include a name to create a new goal.")
         }
+        console.log(this.state)
     }
 
     autoFillForm = (selectedValue, dates) => {
@@ -77,21 +80,18 @@ class Goal extends React.Component {
 
     render() {
         let {addGoal, updateGoal, deleteGoal, goals} = this.props
-
         return (
             <div>
-                 <div>
                 Add Goal
                 <CardBody>
-                    <Form onSubmit={(e) => this.handleSubmit(e, addGoal)}>
+                    <Form onSubmit={(e) => this.handleSubmit(e, addGoal, updateGoal, deleteGoal)}>
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Input type="text" name="level" id="level" placeholder="Goal" value={this.state.name} onChange={this.handleOnChange}/>
+                                    <Input type="text" name="level" id="level" placeholder="Goal name" value={this.state.name} onChange={this.handleOnChange}/>
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Button className="button">Add goal</Button>
                         <FormGroup onChange={(e) => this.autoFillForm(e.target.value, goals)}>
                             <Label for="edit-schedule">Change goal</Label>
                             <Input type="select" name="select" id="edit-schedule">
@@ -105,7 +105,6 @@ class Goal extends React.Component {
                         }
                     </Form> 
                 </CardBody>
-            </div>
             </div>
         )
     }

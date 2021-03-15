@@ -219,7 +219,7 @@ class App extends React.Component {
 
   // Goals
   addGoal = (newGoal) => {
-    fetch(`http://localhost:3000/exercises`, {
+    fetch(`http://localhost:3000/goals`, {
       method: 'POST', 
       headers: {
           'Content-Type': 'application/json',
